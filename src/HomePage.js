@@ -1,7 +1,9 @@
 import BookList from './components/BookList';
-import React, {useState, useEffect } from 'react'
+import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   
   const [input, setInput] = useState('');
   const [books, setBooks] = useState([]);
@@ -9,18 +11,18 @@ const HomePage = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    try{
-      fetch(`https://openlibrary.org/search.json?title=${input}`)
-      .then(res => res.json())
-      .then(data => {
-       setBooks(data.docs[0].seed);
-       console.log(books);
-       
-      })
-    }
-    catch(err){
-      console.log(err)
-    }
+    // try{
+    //   fetch(`https://openlibrary.org/search.json?q=${input}`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data)
+    //    setBooks(data.docs[0].seed);
+    //   })
+    // }
+    // catch(err){
+    //   console.log(err)
+    // }
+    navigate(`/booklist?title=${input}`)
     
   }
 
@@ -32,8 +34,7 @@ const HomePage = () => {
         <button onClick={handleSubmit}>Search</button>
     </form>
     <div>
-        <BookList books={books}/>
-        
+        <BookList books={books} />   
     </div>
     </>
   )

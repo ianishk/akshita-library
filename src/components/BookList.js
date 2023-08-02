@@ -2,7 +2,7 @@ import React from 'react';
 import BookCard from './BookCard';
 
 const BookList = ({books}) => {
-  console.log(books);
+  // console.log(books);
 
   return (
     <div>
